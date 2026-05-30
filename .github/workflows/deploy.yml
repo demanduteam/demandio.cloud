@@ -1,0 +1,31 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH to Server and Deploy
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            # به پوشه پروژه در سرور می‌رویم (این مسیر را بر اساس سرور خود تغییر دهید)
+            cd /root/demandio-frontend
+            
+            # دریافت کدهای جدید از گیت‌هاب
+            git pull origin main
+            
+            # ساخت فایل env روی سرور با استفاده از سیکرت‌های گیت‌هاب
+            echo "VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}" > .env
+            echo "VITE_SUPABASE_ANON_KEY=${{ secrets.VITE_SUPABASE_ANON_KEY }}" >> .env
+            
+            # بیلد و ران کردن مجدد داکر
+            docker-compose down
+            docker-compose up -d --build
