@@ -4,7 +4,6 @@ on:
   push:
     branches: [ main ]
 
-# دسترسی‌های لازم برای ربات گیت‌هاب
 permissions:
   contents: read
   pages: write
@@ -20,24 +19,23 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20 # ارتقا به نسخه ۲۰ برای رفع باگ‌های قدیمی
 
-      - name: Install Dependencies
+      - name: Clean, Update NPM, and Install
         run: |
-          rm -f package-lock.json
+          npm install -g npm@latest
+          rm -rf node_modules package-lock.json
           npm install
-
+          
       - name: Build Project
         run: npm run build
         env:
-          # فراخوانی سیکرت‌ها در زمان بیلد شدن
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # خیلی مهم: فقط این پوشه رو بفرست برای پابلیش شدن
           path: ./dist
 
   deploy:
