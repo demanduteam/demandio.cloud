@@ -19,11 +19,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20 # ارتقا به نسخه ۲۰ برای رفع باگ‌های قدیمی
+          node-version: 22 # 👈 ارتقا به نسخه ۲۲ برای سازگاری کامل با ابزارها و پکیج‌های جدید شما
 
-      - name: Clean, Update NPM, and Install
+      - name: Install Dependencies
         run: |
-          npm install -g npm@latest
           rm -rf node_modules package-lock.json
           npm install
           
