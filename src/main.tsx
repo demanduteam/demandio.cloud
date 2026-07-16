@@ -6,8 +6,8 @@ import './index.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/* اضافه کردن basename برای حل مشکل صفحه سفید در گیت‌هاب */}
-    <BrowserRouter basename="/demandio.cloud">
+    {/* حذف basename چون دامین اختصاصی مستقیماً به روت اشاره می‌کند */}
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </StrictMode>,
