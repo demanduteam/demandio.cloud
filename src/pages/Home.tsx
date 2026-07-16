@@ -506,7 +506,7 @@ export default function Home({ lang, setLang }: { lang: string, setLang: (l: str
                             <h3 className="text-white font-bold mb-4">{lang === 'en' ? 'Contact Us' : 'Contactgegevens'}</h3>
                             <ul className="space-y-3 text-sm">
                                 <li className="flex items-start gap-3"><MapPin className="w-5 h-5 text-blue-500 shrink-0" /><span>Fluwelen Burgwal 58<br/>2511CJ Den Haag<br/>The Netherlands</span></li>
-                                <li className="flex items-center gap-3"><Send className="w-5 h-5 text-blue-500 shrink-0" /><a href="mailto:mikehasanzade@gmail.com" className="hover:text-white transition">mmikehasanzade@gmail.com</a></li>
+                                <li className="flex items-center gap-3"><Send className="w-5 h-5 text-blue-500 shrink-0" /><a href="mailto:mikehasanzade@gmail.com" className="hover:text-white transition">mikehasanzade@gmail.com</a></li>
                             </ul>
                         </div>
                         <div>
