@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: '/demandio.cloud/', // این خط برای گیت‌هاب پیجز اضافه شد
+    base: '/', // این خط برای گیت‌هاب پیجز اضافه شد
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
